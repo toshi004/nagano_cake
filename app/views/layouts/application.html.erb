@@ -9,7 +9,38 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+
   <body>
+
+    <header>
+      <%= link_to "ながのCAKE", "/" %>
+
+      <div class="nav">
+        <% if admin_signed_in? %>
+        <ul>
+          <li>商品一覧</li>
+          <li>会員一覧</li>
+          <li>注文履歴一覧</li>
+          <li>ジャンル一覧</li>
+          <li>ログアウト</li>
+        </ul>
+        <% else %>
+        <ul>
+          <li>About</li>
+          <li>商品一覧</li>
+          <li>新規登録</li>
+          <li>ログイン</li>
+        </ul>
+        <% end %>
+      </div>
+    </header>
+
+    <main>
     <%= yield %>
+    </main>
+
+    <footer></footer>
   </body>
+
 </html>

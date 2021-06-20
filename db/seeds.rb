@@ -5,7 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create!(
-  email: 'admin@naganocake.com',
-  password: 'adminpass',
+
+Admin.create(
+  :id => '1',
+  :email => 'admin@naganocake.com',
+  :encrypted_password => 'adminpass'
 )
