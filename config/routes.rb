@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'items/index'
+    get 'items/new'
+    get 'items/create'
+    get 'items/show'
+    get 'items/edit'
+    get 'items/update'
+  end
   devise_for :admins, skip: :all
   devise_scope :admin do
     get '/admin/sign_in' => 'admin/sessions#new', as: :new_admin_session
@@ -19,4 +27,7 @@ Rails.application.routes.draw do
     patch '/customers/withdraw' => 'public/customers#withdraw'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/admin' => 'admin/homes#top'
+
 end
