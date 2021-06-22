@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :items, except: [:destroy]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
+  
   devise_for :admins, skip: :all
   devise_scope :admin do
     get '/admin/sign_in' => 'admin/sessions#new', as: :new_admin_session
