@@ -27,7 +27,7 @@ class Admin::ItemsController < ApplicationController
     redirect_to admin_item_path(@item.id)
   end
 
-  priavte
+  private
 
   def item_params
     params.require(:item).permit(:name, :image_id, :introduction, :price, :is_active)
