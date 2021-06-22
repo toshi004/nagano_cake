@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/create'
-    get 'items/show'
-    get 'items/edit'
-    get 'items/update'
+    resources :items, except: [:destroy]
   end
   devise_for :admins, skip: :all
   devise_scope :admin do
