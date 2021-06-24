@@ -1,7 +1,43 @@
 <div>
   <div>
     <h2>注文履歴詳細</h2>
+    <h3>購入者</h3> <%= @order.name %>
+    <h3>注文日</h3> <%= @order.created_at %>
+    <h3>配送先</h3> <%= @order.address %>
+    <h3>支払方法</h3> <%= @order.payment %>
+    <h3>注文ステータス</h3>
   </div>
 
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>製作ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_items.each do |order_item| %>
+        <tr>
+          <td><%= order_item.item_id.name %></td>
+          <td><%= order_item.price %></td>
+          <td><%= order_item.amount %></td>
+          <td></td>
+          <td></td>
+          <td><%= order_item.submit "更新" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div>
+      <h3>商品合計</h3>
+      <h3>送料</h3>
+      <h3>請求金額合計</h3>
+    </div>
+  </div>
 
 </div>
