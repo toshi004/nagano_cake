@@ -14,33 +14,38 @@
   <body>
 
     <header>
-      <%= link_to "ながのCAKE", "/" %>
+      <nav class="navbar navbar-expand-lg bg-info">
+        <div class="container">
+          <%= link_to "ながのCAKE", "/", class: 'navbar-brand font-weight-bold text-white' %>
 
-      <div class="nav">
-        <% if admin_signed_in? %>
-        <ul>
-          <li>商品一覧</li>
-          <li>会員一覧</li>
-          <li>注文履歴一覧</li>
-          <li>ジャンル一覧</li>
-          <li>ログアウト</li>
-        </ul>
-        <% else %>
-        <ul>
-          <li>About</li>
-          <li>商品一覧</li>
-          <li>新規登録</li>
-          <li>ログイン</li>
-        </ul>
-        <% end %>
-      </div>
+          <% if admin_signed_in? %>
+          <ul class="navbar-nav ml-auto">
+            <li><%= link_to "商品一覧", admin_items_path, class: 'nav-link btn btn-outline-dark mx-2' %></li>
+            <li><%= link_to "会員一覧", admin_customers_path, class: 'nav-link btn btn-outline-dark mx-2' %></li>
+            <li><%= link_to "注文履歴一覧", admin_path, class: 'nav-link btn btn-outline-dark mx-2' %></li>
+            <li><%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link btn btn-outline-dark mx-2' %></li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn btn-outline-dark mx-2' %></li>
+          </ul>
+          <% else %>
+          <ul class="navbar-nav">
+            <li class="nav-link btn btn-light mx-2">About</li>
+            <li class="nav-link btn btn-light mx-2">商品一覧</li>
+            <li class="nav-link btn btn-light mx-2">新規登録</li>
+            <li class="nav-link btn btn-light mx-2">ログイン</li>
+          </ul>
+          <% end %>
+        </div>
+      </nav>
     </header>
 
     <main>
-    <%= yield %>
+      <%= yield %>
     </main>
 
-    <footer></footer>
+    <footer>
+      <div class="container bg-info">
+      </div>
+    </footer>
   </body>
 
 </html>
