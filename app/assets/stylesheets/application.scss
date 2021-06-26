@@ -14,10 +14,20 @@
  *= require_self
  */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+ @import "bootstrap";
+
+ * {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+ }
+
+ body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
 }
 
-@import "bootstrap";
+main {
+  flex: 1;
+}
