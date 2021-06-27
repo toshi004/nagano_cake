@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
+  root to: 'public/homes#top'
+
   namespace :admin do
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
     resources :order_items, only: [:update]
+  end
+
+  namespace :public do
   end
 
   devise_for :admins, skip: :all
@@ -30,5 +35,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/admin' => 'admin/homes#top'
+  get '/about' => 'public/homes#about'
 
 end
