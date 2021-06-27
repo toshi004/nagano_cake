@@ -6,7 +6,7 @@
 
   <div class="row">
     <div class="col mx-2">
-      <%= attachment_image_tag @item, :image %>
+      <%= attachment_image_tag @item, :image, :fill, 50, 40, format: 'jpeg', fallback: "NoImage_stuff.jpg" %>
     </div>
 
     <div class="col">

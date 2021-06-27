@@ -6,7 +6,7 @@
 
   <div class="row w-100 my-3">
   <form class="form-horizontal mx-auto">
-    <%= form_with model: @item, url: '/admin/items', local:true do |f| %>
+    <%= form_with model: [:admin, @item], local:true do |f| %>
 
     <div class="form-group row">
       <label class="col-md-5 col-form-label">商品画像</label>
@@ -38,8 +38,8 @@
 
     <div class="form-group row">
       <label class="col-md-5 control-label">税抜価格</label>
-      <div class="col-md-7 ">
-        <%= f.text_field :price, placeholder: "1000", size: "30" %><p class="d-inline">円</p>
+      <div class="col-md-7">
+        <%= f.text_field :price, placeholder: "1000", size: "30" %>円
       </div>
     </div>
 
