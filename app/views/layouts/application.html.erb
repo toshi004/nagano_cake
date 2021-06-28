@@ -26,9 +26,16 @@
             <li><%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link btn btn-outline-dark btn-sm mx-2' %></li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn btn-outline-dark btn-sm mx-2' %></li>
           </ul>
+          <% elsif customer_signed_in? %>
+          <ul>
+            <li>マイページ</li>
+            <li>商品一覧</li>
+            <li>カート</li>
+            <li>ログアウト</li>
+          </ul>
           <% else %>
           <ul class="navbar-nav">
-            <li><%= link_to "About", about_path, class: 'nav-link btn btn-sm btn-light mx-2'</li>
+            <li><%= link_to "About", about_path, class: 'nav-link btn btn-sm btn-light mx-2' %></li>
 
             <li class="nav-link btn btn-light mx-2">商品一覧</li>
             <li class="nav-link btn btn-light mx-2">新規登録</li>

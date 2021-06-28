@@ -1,26 +1,43 @@
-<h2>Log in</h2>
+<div class="container mt-3">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row mt-3 ml-5">
+    <h4 class="bg-light">ログイン</h4>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="row w-100 my-3">
+    <h6 class="bg-light">会員の方はこちらからログイン</h6>
+
+    <form class="form-horizontal mx-auto">
+      <%= form_with model: @customer, url: admin_session_path, local: true do |f| %>
+
+      <div class="form-group row">
+        <label class="col-md-5 col-form-label">メールアドレス</label>
+        <div class="col-md-7">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-5 col-form-label">パスワード</label>
+        <div class="col-md-7">
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "ログイン", class="btn btn-primary" %>
+      </div>
+      <% end %>
+    </form>
+
+    <%= render "publics/shared/links" %>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <div class="row mt-3 ml-5">
+    <h6 class="bg-light">会員登録がお済みでない方</h6>
+    <div class="col mx-auto">
+      <%= link_to "こちら", new_customer_registration_path %><p>から新規登録を行ってください。</p>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
 
-<%= render "publics/shared/links" %>
+</div>
