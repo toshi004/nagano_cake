@@ -1,6 +1,23 @@
-<div class="container mt-3">
+<div class="container mt-3 w-75">
 
-  <div class="row mt-3 ml-5">
-    <h2>商品一覧</h2><span>(全×件)</span>
+  <div class="row mt-4 ml-5 h-auto d-flex align-items-end">
+    <h2 class="mb-0">商品一覧</h2><p class="ml-2 mb-0">(全<%= @items.count %>件)</p>
   </div>
+
+  <div class="d-flex justify-content-start flex-wrap my-3">
+    <% @items.each do |item| %>
+    <div class="mx-2">
+      <%= link_to item_path do %>
+      <%= item.image %>
+      <% end %>
+      <p class="font-weight-bold my-2"><%= item.name %></p><br>
+      <p class="font-weight-bold">￥<%= item.add_tax_price.to_s(:delimited) %></p>
+    </div>
+    <% end %>
+  </div>
+
+
+    <%= paginate @items %>
+  </div>
+
 </div>

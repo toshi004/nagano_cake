@@ -5,9 +5,9 @@
   </div>
 
   <div class="row">
-    <div class="col">
+    <div class="col-md-2">
       <table class="table w-50">
-        <thead>
+        <thead class="thead-light">
           <tr>
             <th>商品名</th>
             <th>単価(税込)</th>
@@ -16,12 +16,14 @@
           </tr>
         </thead>
         <tbody>
+          <%= @orders.each do |order| %>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><%= order.order_items.items.image %> <%= order.order_items.items.name %></td>
+            <td><%= order.order_items.items.add_tax_price.to_s(:delimited) %></td>
+            <td><%= order.order_items.amount %></td>
             <td></td>
           </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
@@ -29,24 +31,27 @@
     <div class="col pull-right">
       <table>
         <tr>
-          <th>送料</th><td></td>
+          <th class="thead-light">送料</th><td><%= @orders.shipping_fee %></td>
         </tr>
         <tr>
-          <th>商品合計</th><td></td>
+          <th class="thead-light">商品合計</th><td></td>
         </tr>
         <tr>
-          <th>請求金額</th><td></td>
+          <th class="thead-light">請求金額</th><td><%= @orders.total_fee %></td>
         </tr>
       </table>
     </div>
   </div>
 
   <div class="row">
-    支払方法
-    お届け先
+    <h3>支払方法</h3><p><%= @orders.payment %></p>
+    <h3>お届け先</h3>
+    <p><%= @orders.postal_code%> <%= @orders.address %><br>
+       <%= @orders.name %>
+    </p>
   </div>
 
   <div class="row my-3 mx-auto">
-    注文を確定する
+    <%= link_to "注文を確定する", orders_thanks_path, class: 'btn btn-success' %>
   </div>
 </div>

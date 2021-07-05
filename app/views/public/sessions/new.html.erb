@@ -1,14 +1,15 @@
-<div class="container mt-3">
+<div class="container mt-3 w-75">
 
-  <div class="row mt-3 ml-5">
-    <h4 class="bg-light">ログイン</h4>
-  </div>
+    <div class="row mt-3 ml-4">
+      <h4 class="bg-light">ログイン</h4>
+    </div>
 
-  <div class="row w-100 my-3">
-    <h6 class="bg-light">会員の方はこちらからログイン</h6>
+    <div class="row mt-3 ml-5">
+      <h6 class="bg-light">会員の方はこちらからログイン</h6>
+    </div>
 
-    <form class="form-horizontal mx-auto">
-      <%= form_with model: @customer, url: admin_session_path, local: true do |f| %>
+    <div class="row w-100 my-3">
+      <%= form_with model: @customer, url: customers_sign_in_path, class: 'form-horizontal mx-auto', local: true do |f| %>
 
       <div class="form-group row">
         <label class="col-md-5 col-form-label">メールアドレス</label>
@@ -25,19 +26,16 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "ログイン", class="btn btn-primary" %>
+        <%= f.submit "ログイン", class: "btn btn-primary" %>
       </div>
       <% end %>
-    </form>
-
-    <%= render "publics/shared/links" %>
   </div>
 
   <div class="row mt-3 ml-5">
     <h6 class="bg-light">会員登録がお済みでない方</h6>
-    <div class="col mx-auto">
-      <%= link_to "こちら", new_customer_registration_path %><p>から新規登録を行ってください。</p>
-    </div>
+  </div>
+  <div class="row my-3 ml-5 pl-5">
+    <p class="pl-5"><%= link_to "こちら", customers_sign_up_path %>から新規登録を行ってください。</p>
   </div>
 
 </div>
