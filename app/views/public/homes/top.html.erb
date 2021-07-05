@@ -13,14 +13,14 @@
     <h3>新着商品</h3>
   </div>
 
-  <div class="row">
+  <div class="d-flex justify-content-start my-3">
     <% @items.each do |item| %>
-    <div class="col">
+    <div class="mx-2">
       <%= link_to item_path do %>
       <%= item.image %>
       <% end %>
-      <%= item.name %>
-      <%= item.price %>
+      <p class="font-weight-bold my-2"><%= item.name %></p><br>
+      <p class="font-weight-bold">￥<%= item.add_tax_price.to_s(:delimited) %></p>
     </div>
     <% end %>
   </div>

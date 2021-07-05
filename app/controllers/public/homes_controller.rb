@@ -4,7 +4,4 @@ class Public::HomesController < ApplicationController
     @items = Item.last(4)
   end
 
-  def about
-  end
-
 end

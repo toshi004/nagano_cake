@@ -1,3 +1,25 @@
 <div class="container mt-3">
-  
+
+  <div class="row">
+    <div class="col-md-4">
+      <%= @item.image %>
+    </div>
+
+    <div class="col-md-6">
+      <h3><%= @item.name %></h3><br>
+      <p><%= @item.introduction %></p>
+      <h3 class="mb-0">￥<%= @item.add_tax_price.to_s(:delimited) %></h3><p class="mb-0">(税込)</p>
+
+      <%= form_with model: [:public, @cart_item], local: true do |f| %>
+        <div class="row">
+          <div class="form-group">
+            <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "カートに入れる", class: 'btn btn-success' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
