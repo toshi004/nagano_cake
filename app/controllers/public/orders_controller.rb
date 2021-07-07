@@ -20,6 +20,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_items = OrderItem.find(params[:id])
   end
 
 end

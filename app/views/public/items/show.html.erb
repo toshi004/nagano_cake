@@ -1,22 +1,22 @@
-<div class="container mt-3">
+<div class="container mt-3 w-100">
 
-  <div class="row">
-    <div class="col-md-4">
-      <%= @item.image %>
+  <div class="row my-5 mx-auto">
+    <div class="col-md-5 text-right">
+      <%= attachment_image_tag @item, :image, format: 'jpeg', fallback: "NoImage_stuff.jpg",size: "250x180" %>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-7">
       <h3><%= @item.name %></h3><br>
       <p><%= @item.introduction %></p>
-      <h3 class="mb-0">￥<%= @item.add_tax_price.to_s(:delimited) %></h3><p class="mb-0">(税込)</p>
+      <h3 class="mb-0 d-inline-block">￥<%= @item.add_tax_price.to_s(:delimited) %></h3><span class="mb-0">(税込)</span>
 
-      <%= form_with model: [:public, @cart_item], local: true do |f| %>
-        <div class="row">
+      <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+        <div class="row my-5">
           <div class="form-group">
             <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
           </div>
           <div class="form-group">
-            <%= f.submit "カートに入れる", class: 'btn btn-success' %>
+            <%= f.submit "カートに入れる", class: 'btn btn-success btn-sm ml-3' %>
           </div>
         </div>
       <% end %>
