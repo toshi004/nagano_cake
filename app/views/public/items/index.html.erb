@@ -4,19 +4,19 @@
     <h2 class="mb-0">商品一覧</h2><p class="ml-2 mb-0">(全<%= @items.count %>件)</p>
   </div>
 
-  <div class="d-flex justify-content-start flex-wrap my-3">
+  <div class="d-flex flex-wrap my-3">
     <% @items.each do |item| %>
-    <div class="mx-2">
-      <%= link_to item_path do %>
-      <%= item.image %>
+    <div class="mx-4 px-2">
+      <%= link_to item_path(item.id) do %>
+      <%= attachment_image_tag item, :image, format: 'jpeg', fallback: "NoImage_stuff.jpg",size: "150x100" %>
       <% end %>
-      <p class="font-weight-bold my-2"><%= item.name %></p><br>
-      <p class="font-weight-bold">￥<%= item.add_tax_price.to_s(:delimited) %></p>
+      <p class="font-weight-bold mt-3 mb-0"><%= item.name %></p>
+      <p class="font-weight-bold mt-2">￥<%= item.add_tax_price.to_s(:delimited) %></p>
     </div>
     <% end %>
   </div>
 
-
+  <div class="pagination my-2 justify-content-center">
     <%= paginate @items %>
   </div>
 

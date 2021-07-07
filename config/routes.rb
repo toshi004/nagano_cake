@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       post '/orders/confirm' => 'orders#confirm'
       get  '/orders/thanks'  => 'orders#thanks'
       post '/orders/decide'  => 'orders#decide'
-    resources :adresses,    except: [:new, :show]
+    resources :addresses,    only: [:index, :create, :edit, :update, :destroy]
     #customersのルーティング
     get '/customers/my_page'     => 'customers#show'
     get '/customers/edit'        => 'customers#edit'

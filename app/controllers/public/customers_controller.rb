@@ -1,25 +1,22 @@
 class Public::CustomersController < ApplicationController
 
   def show
-    @customer = Customer.find(current_customer)
+    @customer = Customer.find(current_customer.id)
   end
 
   def edit
-    @customer = Customer.find(current_customer)
+    @customer = Customer.find(current_customer.id)
   end
 
   def update
-    @customer = Customer.find(current_customer)
+    @customer = Customer.find(current_customer.id)
     @customer.update(customer_params)
     redirect_to customers_my_page_path(@customer.id)
   end
 
-  def unsubscribe
-  end
-
   def withdraw
-    @customer = Customer.find(current_customer)
-    @customer.update_attri(:is_active, false)
+    @customer = Customer.find(current_customer.id)
+    @customer.update_attribute(:is_active, 'false')
     redirect_to root_path
   end
 

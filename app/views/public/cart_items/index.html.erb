@@ -1,14 +1,14 @@
-<div class="container mt-3">
+<div class="container mt-3 w-100">
 
   <div class="row mt-3 ml-5">
     <h4 class="bg-light">ショッピングカート</h4>
-    <div class="col pull-right">
-      <%= link_to "カートを空にする", cart_items_destroy_all_path, class: 'btn btn-sm btn-danger' %>
+    <div class="col text-right">
+      <%= link_to "カートを空にする", cart_items_destroy_all_path, class: 'btn btn-sm btn-danger mr-3' %>
     </div>
   </div>
 
-  <div class="row w-100 my-3">
-    <table class="table">
+  <div class="row w-75 my-3 mx-auto">
+    <table class="table table-bordered">
       <thead class="thead-light">
         <tr>
           <th>商品名</th>
@@ -21,15 +21,15 @@
       <tbody>
         <% @cart_items.each do |cart_item| %>
         <tr>
-          <td><%= cart_item.item.image %> <%= cart_item.item.name %></td>
+          <td><%= attachment_image_tag cart_item, :image, format: 'jpeg', fallback: "NoImage_stuff.jpg",size: "100x80" %><%= cart_item.item.name %></td>
           <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
           <td>
-            <%= form_with model: [:public, @cart_item], local: true do |f| %>
-            <%= f.select :amount, options_for_select((1..10).to_a) %><%= f.submit "変更", class: 'btn btn-sm btn-success' %>
+            <%= form_with model: @cart_item, url: cart_item_path, local: true do |f| %>
+            <%= f.select :amount, options_for_select((1..10).to_a), size: "10", value:"#{session[:cart_item]["amount"]}" %><%= f.submit "変更", class: 'btn btn-sm btn-success' %>
             <% end %>
           </td>
           <td></td>
-          <td><%= link_to "削除する", url: '/cart_items/:id', metod: :patch, class: 'btn btn-sm btn-danger' %></td>
+          <td><%= link_to "削除する", controller: "cart_items", action: "destroy", metod: :patch, class: 'btn btn-sm btn-danger' %></td>
         </tr>
         <% end %>
       </tbody>
@@ -37,17 +37,18 @@
     <div class="col">
       <%= link_to "買い物を続ける", root_path, class: "btn btn-sm btn-primary" %>
     </div>
+
     <div class="pull-right">
       <table>
         <tr>
-          <th class="thead-light">合計金額</th>
-          <td>1500</td>
+          <th class="thead-light my-3">合計金額</th>
+          <td></td>
         </tr>
       </table>
     </div>
   </div>
 
-  <div class="row mx-auto mt-2 mb-5">
+  <div class="row mx-auto mt-3 mb-5">
     <%= link_to "情報入力に進む", new_order_path, class: 'btn btn-success' %>
   </div>
 </div>

@@ -5,8 +5,7 @@
   </div>
 
   <div class="row w-100 my-3">
-  <form class="form-horizontal mx-auto">
-    <%= form_with model: [:admin, @item], local:true do |f| %>
+    <%= form_with model: [:admin, @item], class: 'form-horizontal mx-auto', local:true do |f| %>
 
     <div class="form-group row">
       <label class="col-md-5 col-form-label">商品画像</label>
@@ -39,7 +38,7 @@
     <div class="form-group row">
       <label class="col-md-5 control-label">税抜価格</label>
       <div class="col-md-7">
-        <%= f.text_field :price, size: "30" %>円
+        <%= f.text_field :price, size: "20" %>円
       </div>
     </div>
 
@@ -60,12 +59,11 @@
     <div class="form-group row">
       <div class="col-md-4"></div>
       <div class="col-md-4">
-        <%= f.submit '変更を保存', class: 'btn btn-success btn-sm' %>
+        <%= f.submit '変更を保存', class: 'btn btn-success' %>
       </div>
     </div>
 
     <% end %>
-  </form>
   </div>
 
 </div>
