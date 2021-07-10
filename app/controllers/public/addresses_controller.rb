@@ -1,27 +1,31 @@
 class Public::AddressesController < ApplicationController
 
   def index
+    @customer = Customer.find(current_customer.id)
     @address = Address.new
-    @addresses = Address.all
+    @addresses = Address.where(customer_id: @customer)
   end
 
   def create
     @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     @address.save
     redirect_to addresses_path
   end
 
   def edit
+    @customer = Customer.find(current_customer.id)
     @address = Address.find(params[:id])
   end
 
   def update
     @address = Address.find(params[:id])
     @address.update(address_params)
-    redirect_to action: :index
+    redirect_to addresses_path
   end
 
   def destroy
+    @customer = Customer.find(current_customer.id)
     address = Address.find(params[:id])
     address.destroy
     redirect_to action: :index

@@ -13,10 +13,12 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :items,       only: [:index, :show]
-    resources :cart_items,  only: [:index, :update, :create]
+    resources :items,       only: [:index, :show] do
+      resources :cart_items,  only: [:create]
       patch '/cart_items/:id'         => 'cart_items#destroy'
-      patch '/cart_items/destroy_all' => 'cart_items#destroy_all'
+      delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+    end
+    resources :cart_items,  only: [:index, :update]
     resources :orders,      only: [:new, :index, :show]
       post '/orders/confirm' => 'orders#confirm'
       get  '/orders/thanks'  => 'orders#thanks'

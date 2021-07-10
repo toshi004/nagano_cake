@@ -6,7 +6,7 @@
 
   <div class="row">
     <div class="col-md-2">
-      <table class="table w-50">
+      <table class="table table-bordered table-sm w-50">
         <thead class="thead-light">
           <tr>
             <th>商品名</th>
@@ -16,12 +16,15 @@
           </tr>
         </thead>
         <tbody>
-          <%= @orders.each do |order| %>
+          <%= @cart_items.each do |cart_item| %>
           <tr>
-            <td><%= order.order_items.items.image %> <%= order.order_items.items.name %></td>
-            <td><%= order.order_items.items.add_tax_price.to_s(:delimited) %></td>
-            <td><%= order.order_items.amount %></td>
-            <td></td>
+            <td>
+              <%= attachment_image_tag cart_item.item, :image, format: 'jpeg', fallback: "NoImage_stuff.jpg",size: "50x40", class: "mr-2" %>
+              <%= cart_item.item.name %>
+            </td>
+            <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
+            <td><%= cart_item.amount %></td>
+            <td><%= cart_item.item_subtotal.to_s(:delimited) %></td>
           </tr>
           <% end %>
         </tbody>
@@ -31,10 +34,12 @@
     <div class="col pull-right">
       <table>
         <tr>
-          <th class="thead-light">送料</th><td><%= @orders.shipping_fee %></td>
+          <th class="thead-light">送料</th>
+          <td><%= @orders.shipping_fee %></td>
         </tr>
         <tr>
-          <th class="thead-light">商品合計</th><td></td>
+          <th class="thead-light">商品合計</th>
+          <td></td>
         </tr>
         <tr>
           <th class="thead-light">請求金額</th><td><%= @orders.total_fee %></td>
