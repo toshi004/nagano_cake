@@ -6,17 +6,17 @@
 
   <div class="row mt-3 ml-5">
 
-    <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
+    <%= form_with model: @order, method: :post, url: orders_confirm_path, local: true do |f| %>
 
     <div>
       <h5>支払い方法</h5>
       <div class="form-check ml-5">
         <div class="row">
-          <%= f.radio_button :payment, 1, checked: true, class: 'form-check-input' %>
+          <%= f.radio_button :payment, 0, checked: true, class: 'form-check-input' %>
           <%= f.label :payment, 'クレジットカード' %>
         </div>
         <div class="row">
-          <%= f.radio_button :payment, 2, class: 'form-check-input' %>
+          <%= f.radio_button :payment, 1, class: 'form-check-input' %>
           <%= f.label :payment, '銀行振込' %>
         </div>
       </div>
@@ -25,22 +25,28 @@
     <div>
       <h5>お届け先</h5>
       <div class="form-check ml-5">
+
         <div class="row">
           <div class="w-100">
             <%= f.radio_button :address, @customer.address, checked: true, class: 'form-check-input' %>
             <%= f.label :address, 'ご自身の住所' %>
+            <%= f.hidden_field :postal_code, :value => @customer.postal_code %>
+            <%= f.hidden_field :name, :value => @customer.last_name %>
+            <%= f.hidden_field :name, :value => @customer.first_name %>
           </div>
           <div class="col-md-7 ml-3 mb-2">
             〒<%= @customer.postal_code %><%= @customer.address %><br>
             <%= @customer.last_name %><%= @customer.first_name %>
           </div>
         </div>
+
         <div class="row">
           <div>
-            <%= f.radio_button :address, class: 'form-check-input' %>
+            <%= f.radio_button :address, checked: true, class: 'form-check-input' %>
             <%= f.label :address, '登録済住所から選択' %>
           </div>
         </div>
+
         <div class="row">
           <div class="w-100">
             <%= f.radio_button :address, class: 'form-check-input' %>
@@ -61,6 +67,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
