@@ -19,9 +19,9 @@ Rails.application.routes.draw do
       delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
     end
     resources :cart_items,  only: [:index, :update]
+    get  '/orders/thanks'  => 'orders#thanks'
     resources :orders,      only: [:new, :index, :show]
       post '/orders/confirm' => 'orders#confirm'
-      get  '/orders/thanks'  => 'orders#thanks'
       post '/orders/decide'  => 'orders#decide'
     resources :addresses,    only: [:index, :create, :edit, :update, :destroy]
     #customersのルーティング
@@ -42,8 +42,9 @@ Rails.application.routes.draw do
     resources :items,       except: [:destroy]
     resources :genres,      only: [:index, :create, :edit, :update]
     resources :customers,   only: [:index, :show, :edit, :update]
-    resources :orders,      only: [:show, :update]
-    resources :order_items, only: [:update]
+    resources :orders,      only: [:show, :update] do
+      resources :order_items, only: [:update]
+    end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

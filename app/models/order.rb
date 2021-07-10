@@ -1,7 +1,8 @@
 class Order < ApplicationRecord
 
   belongs_to :customer
-  belongs_to :order_item
+  belongs_to :order_item, optional: true
+    accepts_nested_attributes_for :order_item
   has_one :item, through: :order_item
 
   enum payment: { クレジットカード: 0, 銀行振込: 1 }
