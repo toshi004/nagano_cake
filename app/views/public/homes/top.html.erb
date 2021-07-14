@@ -1,0 +1,32 @@
+<div class="container mt-3 w-75">
+
+  <div class="row">
+    <div class="top-introduction mx-auto my-3">
+      <p class="bg-white py-2">ようこそ、ながのCAKEへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。</p>
+    </div>
+  </div>
+
+  <div class="row my-2">
+    <h3>新着商品</h3>
+  </div>
+
+  <div class="d-flex justify-content-between my-3">
+    <% @items.each do |item| %>
+    <div>
+      <%= link_to item_path(item.id) do %>
+      <%= attachment_image_tag item, :image, format: 'jpeg', fallback: "NoImage_stuff.jpg",size: "150x100" %>
+      <% end %>
+      <p class="font-weight-bold mt-3 mb-0"><%= item.name %></p>
+      <p class="font-weight-bold mt-2">￥<%= item.add_tax_price.to_s(:delimited) %></p>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="text-right my-3 pr-5">
+    <%= link_to "全ての商品を見る＞", items_path %>
+  </div>
+
+</div>

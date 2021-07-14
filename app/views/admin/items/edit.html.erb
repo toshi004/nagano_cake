@@ -1,0 +1,69 @@
+<div class="container mt-3">
+
+  <div class="row mt-3 ml-5">
+    <h4 class="bg-light">商品編集</h4>
+  </div>
+
+  <div class="row w-100 my-3">
+    <%= form_with model: [:admin, @item], class: 'form-horizontal mx-auto', local:true do |f| %>
+
+    <div class="form-group row">
+      <label class="col-md-5 col-form-label">商品画像</label>
+      <div class="col-md-7">
+        <%= f.attachment_field :image %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-5 col-form-label">商品名</label>
+      <div class="col-md-7">
+        <%= f.text_field :name, size: "30" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-5 control-label">商品説明</label>
+      <div class="col-md-7">
+        <%= f.text_area :introduction, size: "33x10" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-5 control-label">ジャンル</label>
+      <div class="col-md-7">
+        <%= f.select :genre_id, Genre.all.map {|genre| [genre.name, genre.id] }, {include_blank: '--選択してください--'} %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-5 control-label">税抜価格</label>
+      <div class="col-md-7">
+        <%= f.text_field :price, size: "20" %>円
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-5 control-label">販売ステータス</label>
+      <div class="col-md-7">
+        <div class="d-inline mr-3">
+          <%= f.radio_button :is_active, true, checked: true %>
+          <%= f.label :is_active, '販売中', value: true %>
+        </div>
+        <div class="d-inline">
+          <%= f.radio_button :is_active, false %>
+          <%= f.label :is_active, '販売停止中', value: false %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <%= f.submit '変更を保存', class: 'btn btn-success' %>
+      </div>
+    </div>
+
+    <% end %>
+  </div>
+
+</div>

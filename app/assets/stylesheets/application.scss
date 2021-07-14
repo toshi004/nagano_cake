@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap";
+
+ * {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+ }
+
+ body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.top-introduction {
+ background-image:url(cake_showcase.jpg);
+ background-position: center center;
+ background-size: cover;
+ width: 700px;
+ height: 300px;
+ padding: 100px 150px 0 150px;
+}
